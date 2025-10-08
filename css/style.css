@@ -1,0 +1,181 @@
+body {
+  font-family: 'Arial', sans-serif;
+}
+h1, h2 {
+  font-weight: bold;
+}
+
+/* Site logo in navbar */
+.site-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+  .site-logo { width: 36px; height: 36px; }
+}
+
+/* Service card styles */
+.service-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(19, 35, 47, 0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(19, 35, 47, 0.12);
+}
+.service-icon {
+  font-size: 28px;
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg,#e6f7ff,#fff8e6);
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+.service-card h5 { margin-top: 6px; margin-bottom: 6px; }
+.service-card p.small { margin-bottom: 0; }
+
+/* About section enhancements */
+.about-section h1 { font-size: 2rem; }
+.pastor-card { background: #fff; padding: 1rem; border-radius: 10px; box-shadow: 0 8px 20px rgba(19,35,47,0.06); display:flex; flex-direction:column; }
+.pastor-card { min-height: 520px; }
+.pastor-photo { height: 420px; overflow: hidden; border-radius: 8px; }
+.pastor-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.stat { font-weight: 700; font-size: 1.2rem; }
+.stat-label { font-size: 0.85rem; color: #666; }
+
+@media (max-width: 768px) {
+  .pastor-photo { height: 300px; }
+  .pastor-card { min-height: auto; }
+}
+
+.pastor-card .btn { margin-top: auto; }
+
+/* Make about section sit higher and ensure left column content stacks above */
+.about-section { padding-top: 2.25rem; padding-bottom: 2.25rem; }
+.about-section .verse-slider { max-width: 100%; margin: 1.25rem 0 0 0; }
+.about-section .verse-slider .slides { align-items: center; }
+.pastor-card { position: sticky; top: 90px; }
+
+/* Sticky footer layout: make body a column flex container and let main grow */
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1 0 auto; /* take available space so footer is pushed to bottom */
+}
+footer {
+  flex-shrink: 0;
+}
+
+/* Verse carousel styles */
+.verse-slider {
+  overflow: hidden;
+  position: relative;
+  max-width: 1080px; /* increased ~1.5x */
+  margin: 0 auto;
+}
+.verse-slider .slides {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Ensure slides sit below controls so buttons remain clickable (transforms create stacking contexts) */
+.verse-slider .slides { position: relative; z-index: 1; }
+.verse-slider .slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
+.verse-slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Small responsive tweak */
+@media (max-width: 576px) {
+  .verse-slider { max-width: 100%; }
+}
+
+/* Verse card specific styles (compact) */
+.verse-card {
+  background: #fff;
+  color: #222;
+  padding: 1.5rem 1.8rem; /* increased ~1.5x */
+  border-radius: 9px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 9px rgba(0,0,0,0.1);
+  text-align: center;
+  max-height: 270px; /* increased ~1.5x */
+  overflow: hidden;
+}
+.verse-card blockquote {
+  margin: 0 0 12px 0;
+  font-size: 1.575rem; /* ~1.5x */
+  line-height: 1.18;
+}
+.verse-card .ref {
+  font-size: 1.32rem; /* ~1.5x */
+  color: #555;
+}
+
+/* Increase slider height */
+.verse-slider { max-height: 315px; }
+.verse-slider .slides { align-items: center; }
+
+/* Make sure the slides container doesn't block clicks to overlay controls.
+  Slide children remain interactive. */
+.verse-slider .slides { pointer-events: none; }
+.verse-slider .slide, .verse-slider .slide * { pointer-events: auto; }
+
+/* Arrow controls */
+.verse-prev, .verse-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: none;
+  width: 66px; /* increased ~1.5x */
+  height: 66px; /* increased ~1.5x */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 50; /* higher so control is above slides */
+  pointer-events: auto;
+}
+.verse-prev { left: 8px; }
+.verse-next { right: 8px; }
+.verse-prev:hover, .verse-next:hover { background: rgba(0,0,0,0.7); }
+
+/* Push the verse-slider to the bottom of the about section */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 200px); /* ensure section fills available vertical space; adjust if header/footer sizes differ */
+}
+.about-section .verse-slider {
+  margin-top: auto; /* pushes slider to bottom of section */
+}
+
+@media (max-width: 768px) {
+  .about-section { min-height: auto; }
+}
